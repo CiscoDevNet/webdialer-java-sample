@@ -61,7 +61,7 @@ Visit the [DevNet WebDialer Site](https://developer.cisco.com/site/webdialer)
 1. Import the WebDialer WSDL and generate the Axis2 `.java` files:
 
     ```bash
-    java -cp "lib/axis-1_4/lib/*" org.apache.axis.wsdl.WSDL2Java -o src/ schema/wd70.wsdl
+    java -cp "lib/*" org.apache.axis.wsdl.WSDL2Java -o src/ schema/wd70.wsdl
     ```
 
 1. Finally, to launch the sample in VS Code, select the **Debug** panel, the choose `Debug (Launch) makecall` launch option, and click the green 'Start Debugging' arrow:
