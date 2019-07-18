@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="urn:WD70" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="urn:WD70" xmlns:intf="urn:WD70" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="http://webdialer.ccm.cisco.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4 With AXIS-2250
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema targetNamespace="http://webdialer.ccm.cisco.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="urn:WD70"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="Credential">
+    <sequence>
+     <element maxOccurs="1" minOccurs="0" name="token" type="xsd:string"/>
+     <element name="userID" nillable="true" type="xsd:string"/>
+     <element name="password" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="UserProfile">
+    <sequence>
+     <element name="user" type="xsd:string"/>
+     <element name="deviceName" type="xsd:string"/>
+     <element name="lineNumber" type="xsd:string"/>
+     <element name="supportEM" type="xsd:boolean"/>
+     <element name="locale" type="xsd:string"/>
+     <element name="dontAutoClose" type="xsd:boolean"/>
+     <element name="dontShowCallConf" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="CallResponse">
+    <sequence>
+     <element name="responseCode" type="xsd:int"/>
+     <element name="responseDescription" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WDDeviceInfo">
+    <sequence>
+     <element name="deviceName" type="xsd:string"/>
+     <element name="lines" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="GetConfigResponse">
+    <sequence>
+     <element name="description" type="xsd:string"/>
+     <element name="deviceInfoList" type="impl:ArrayOf_tns1_WDDeviceInfo"/>
+     <element name="responseCode" type="xsd:int"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema targetNamespace="urn:WD70" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://webdialer.ccm.cisco.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="Credential">
+    <complexContent>
+     <extension base="tns1:Credential">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="UserProfile">
+    <complexContent>
+     <extension base="tns1:UserProfile">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="CallResponse">
+    <complexContent>
+     <extension base="tns1:CallResponse">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_WDDeviceInfo">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:WDDeviceInfo[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="WDDeviceInfo">
+    <complexContent>
+     <extension base="tns1:WDDeviceInfo">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfWDDeviceInfo">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:WDDeviceInfo[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="GetConfigResponse">
+    <complexContent>
+     <extension base="tns1:GetConfigResponse">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="WDDeviceInfoDetail">
+    <sequence>
+     <element name="deviceName" nillable="true" type="soapenc:string"/>
+     <element name="lines" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="phoneDesc" nillable="true" type="soapenc:string"/>
+     <element name="phoneType" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfWDDeviceInfoDetail">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:WDDeviceInfoDetail[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ConfigResponseDetail">
+    <sequence>
+     <element name="description" nillable="true" type="soapenc:string"/>
+     <element name="deviceInfoListDetail" nillable="true" type="impl:ArrayOfWDDeviceInfoDetail"/>
+     <element name="responseCode" type="xsd:int"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getProfileDetailSoapResponse">
+
+      <wsdl:part name="getProfileDetailSoapReturn" type="impl:ConfigResponseDetail"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getProfileSoapResponse">
+
+      <wsdl:part name="getProfileSoapReturn" type="impl:GetConfigResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPrimaryLineRequest">
+
+      <wsdl:part name="in0" type="impl:Credential"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="isClusterUserSoapRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="isClusterUserSoapResponse">
+
+      <wsdl:part name="isClusterUserSoapReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="makeCallSoapResponse">
+
+      <wsdl:part name="makeCallSoapReturn" type="impl:CallResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPrimaryLineResponse">
+
+      <wsdl:part name="getPrimaryLineReturn" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="makeCallSoapRequest">
+
+      <wsdl:part name="in0" type="impl:Credential"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+      <wsdl:part name="in2" type="impl:UserProfile"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getProfileSoapRequest">
+
+      <wsdl:part name="in0" type="impl:Credential"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="endCallSoapRequest">
+
+      <wsdl:part name="in0" type="impl:Credential"/>
+
+      <wsdl:part name="in1" type="impl:UserProfile"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getProfileDetailSoapRequest">
+
+      <wsdl:part name="in0" type="impl:Credential"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="endCallSoapResponse">
+
+      <wsdl:part name="endCallSoapReturn" type="impl:CallResponse"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="WDSoapInterface">
+
+      <wsdl:operation name="makeCallSoap" parameterOrder="in0 in1 in2">
+
+         <wsdl:input message="impl:makeCallSoapRequest" name="makeCallSoapRequest"/>
+
+         <wsdl:output message="impl:makeCallSoapResponse" name="makeCallSoapResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="endCallSoap" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:endCallSoapRequest" name="endCallSoapRequest"/>
+
+         <wsdl:output message="impl:endCallSoapResponse" name="endCallSoapResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getProfileSoap" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:getProfileSoapRequest" name="getProfileSoapRequest"/>
+
+         <wsdl:output message="impl:getProfileSoapResponse" name="getProfileSoapResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isClusterUserSoap" parameterOrder="in0">
+
+         <wsdl:input message="impl:isClusterUserSoapRequest" name="isClusterUserSoapRequest"/>
+
+         <wsdl:output message="impl:isClusterUserSoapResponse" name="isClusterUserSoapResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getProfileDetailSoap" parameterOrder="in0">
+
+         <wsdl:input message="impl:getProfileDetailSoapRequest" name="getProfileDetailSoapRequest"/>
+
+         <wsdl:output message="impl:getProfileDetailSoapResponse" name="getProfileDetailSoapResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPrimaryLine" parameterOrder="in0">
+
+         <wsdl:input message="impl:getPrimaryLineRequest" name="getPrimaryLineRequest"/>
+
+         <wsdl:output message="impl:getPrimaryLineResponse" name="getPrimaryLineResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="WebdialerSoapService70SoapBinding" type="impl:WDSoapInterface">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="makeCallSoap">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="makeCallSoapRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:WD70" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="makeCallSoapResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:WD70" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="endCallSoap">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="endCallSoapRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:WD70" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="endCallSoapResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:WD70" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getProfileSoap">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getProfileSoapRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:WD70" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getProfileSoapResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:WD70" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isClusterUserSoap">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="isClusterUserSoapRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:WD70" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="isClusterUserSoapResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:WD70" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getProfileDetailSoap">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getProfileDetailSoapRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:WD70" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getProfileDetailSoapResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:WD70" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPrimaryLine">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPrimaryLineRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:WD70" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPrimaryLineResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:WD70" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="WDSoapInterfaceService">
+
+      <wsdl:port binding="impl:WebdialerSoapService70SoapBinding" name="WebdialerSoapService70">
+
+         <wsdlsoap:address location="https://ds-ucm115-1.cisco.com:8443/webdialer/services/WebdialerSoapService70"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

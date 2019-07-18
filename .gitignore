@@ -1,0 +1,7 @@
+.DS_Store
+certificate/**
+bin/**
+src/com/cisco/ccm/**
+src/WD70/**
+.vscode/settings.json
+.settings/**

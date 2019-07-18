@@ -1,0 +1,24 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch) makecall",
+            "request": "launch",
+            "mainClass": "com.cisco.webdialer.makecall",
+            "projectName": "webdialer-java-sample",
+            "env": {
+                "CUCM": "CHANGEME",
+                "PROXY_USER": "CHANGEME",
+                "PASSWORD": "CHANGEME",
+                "USER_NAME": "CHANGEME",
+                "DEVICE_NAME": "CHANGEME",
+                "CALL_FROM": "CHANGEME",
+                "CALL_TO": "CHANGEME"
+            }
+        }
+    ]
+}
